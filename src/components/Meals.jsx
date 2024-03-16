@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 
-const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+import MealItem from "./MealItem.jsx";
+
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export default function Meals() {
   const [loadedMeals, setLoadedMeals] = useState([]);
 
   useEffect(() => {
     async function fetchMeals() {
-      const response = await fetch(BASE_URL + "/meals");
+      const response = await fetch(BACKEND_URL + "/meals");
 
       if (!response.ok) {
         // ...
@@ -23,7 +25,7 @@ export default function Meals() {
   return (
     <ul id="meals">
       {loadedMeals.map((meal) => (
-        <li key={meal.id}>{meal.name}</li>
+        <MealItem key={meal.id} meal={meal} />
       ))}
     </ul>
   );
