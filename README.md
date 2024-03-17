@@ -6,4 +6,4 @@ That's why you must:
 - go to the folder;
 - start the server locally using `npm start` in the terminal
 
-<img src="/public/repoLogo.jpeg">
+<img src="/public/repoLogo.png">
