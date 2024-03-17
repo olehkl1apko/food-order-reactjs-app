@@ -9,7 +9,7 @@ export default function Meals() {
     data: loadedMeals,
     isLoading,
     error,
-  } = useHttp("/meals", requestConfig);
+  } = useHttp("/meals", requestConfig, []);
 
   if (isLoading) {
     return <p className="center">Fetching meals...</p>;
@@ -19,9 +19,9 @@ export default function Meals() {
     return <Error title="Failed to fetch meals" message={error} />;
   }
 
-  if (!loadedMeals || loadedMeals.length === 0) {
-    return <h2 className="center">No meals found.</h2>;
-  }
+  // if (!data) {
+  //   return <p>No meals found.</p>
+  // }
 
   return (
     <ul id="meals">
