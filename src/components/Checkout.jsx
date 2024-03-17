@@ -7,6 +7,8 @@ import Input from "./UI/Input.jsx";
 import Button from "./UI/Button.jsx";
 import UserProgressContext from "../store/UserProgressContext.jsx";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 export default function Checkout() {
   const cartCtx = useContext(CartContext);
   const userProgressCtx = useContext(UserProgressContext);
@@ -25,6 +27,19 @@ export default function Checkout() {
 
     const fd = new FormData(event.target);
     const customerData = Object.fromEntries(fd.entries());
+
+    fetch(BACKEND_URL + "/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        order: {
+          items: cartCtx.items,
+          customer: customerData,
+        },
+      }),
+    });
   }
 
   return (
@@ -33,7 +48,7 @@ export default function Checkout() {
         <h2>Checkout</h2>
         <p>Total Amount: {currencyFormatter.format(cartTotal)}</p>
 
-        <Input label="Full Name" type="text" id="full-name" />
+        <Input label="Full Name" type="text" id="name" />
         <Input label="E-Mail Address" type="email" id="email" />
         <Input label="Street" type="text" id="street" />
         <div className="control-row">
