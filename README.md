@@ -6,6 +6,6 @@ That's why you must:
 - go to the folder;
 - start the server locally using `npm start` in the terminal
 
-Also don`t forget to create `.env` with backend url `http://localhost:5000` 
+Also do not forget to create `.env` with backend url `http://localhost:5000` 
 
 <img src="/public/repoLogo.png">
